@@ -1,4 +1,7 @@
 from ortools.linear_solver import pywraplp
+import sys
+
+input_file = sys.argv[1]
 
 solver = pywraplp.Solver.CreateSolver("SCIP")
 
@@ -29,9 +32,9 @@ if status == pywraplp.Solver.OPTIMAL:
     # print([modules[i].solution_value() for i in range(n)])
     for i in range(n):
         if modules[i].solution_value():
-            o.write(f'{i+1}: ON\n')
+            print(f'{i+1}: ON')
         else:
-            o.write(f'{i+1}: OFF\n')
+            print(f'{i+1}: OFF')
 else:
-    o.write('IMPOSSIBLE')
+    print('IMPOSSIBLE')
     # print('IMPOSSIBLE')
