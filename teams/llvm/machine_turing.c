@@ -63,7 +63,9 @@ void apply_transition(TuringMachine *tm, Transition tr) {
                tr.direction == 'R' ? tm->head + 1 : tm->head;
 
     if (tm->head > tm->tape_size) {
-        tm->tape = realloc(tm->tape, tm->tape_size * 2 * sizeof(char));
+        int new_size = tm->tape_size * 2;
+        tm->tape = realloc(tm->tape, new_size * sizeof(char));
+        memset(tm->tape + tm->tape_size, '_', new_size - tm->tape_size);
     }
     tm->current_state = tr.next_state;
 }
@@ -72,7 +74,7 @@ void apply_transition(TuringMachine *tm, Transition tr) {
 void run_machine(TuringMachine *tm) {
     if (tm->num_transitions == 0)
         return;
-    
+
     for (int i = 0; i < MAX_STEPS; i++) {
         Transition tr = current_transition(tm);
         if (tr.current_state == END_STATE) 
