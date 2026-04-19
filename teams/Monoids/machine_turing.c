@@ -2,7 +2,7 @@
 #include <string.h>
 #include "machine_turing.h"
 
-#define MAX_STEPS 100000
+#define MAX_STEPS 10000000
 #define INITIAL_TAPE_SIZE 256
 #define INITIAL_TRANSITION_CAPACITY 32
 
