@@ -101,10 +101,11 @@ int main(int argc, char **argv) {
     for (int i = 0; i < modules.size(); i++) {
         std::cout << i + 1 << ": ";
         switch (modules[i].state){
-            case ModuleState::ANY:
             case ModuleState::ON:
                 std::cout << "ON" << std::endl;
                 break;
+            // Off all unbound, it will not cause any conflicts
+            case ModuleState::ANY:
             case ModuleState::OFF:
                 std::cout << "OFF" << std::endl;
                 break;
