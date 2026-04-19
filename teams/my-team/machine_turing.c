@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include "machine_turing.h"
 
-#define MAX_STEPS 100000      // Ограничение на число шагов
+#define MAX_STEPS 10000000      // Ограничение на число шагов
 #define INITIAL_TAPE_SIZE 256 // Начальный размер ленты
 
 #ifndef IS_DEF_SIG
