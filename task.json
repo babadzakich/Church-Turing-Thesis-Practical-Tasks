@@ -1,6 +1,6 @@
 {
   "name": "hakaton",
-  "pipeline_task_id": 5,
+  "pipeline_task_id": 11,
   "submission_root": "teams",
   "scoring": {
     "final_score_max": 1000,
