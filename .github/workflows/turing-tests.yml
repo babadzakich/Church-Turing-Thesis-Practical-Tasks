@@ -52,20 +52,6 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Detect submitted solution
-        id: detect
-        continue-on-error: true
-        working-directory: trusted
-        run: |
-          python3 ci/select_submission.py \
-            --task-dir . \
-            --candidate-root ../candidate \
-            --baseline-root . > "${{ steps.paths.outputs.team_dir_file }}"
-          echo "submission_dir=$(cat "${{ steps.paths.outputs.team_dir_file }}")" >> "$GITHUB_OUTPUT"
-          team_dir="$(cat "${{ steps.paths.outputs.team_dir_file }}")"
-          echo "team=$(basename "$team_dir")" >> "$GITHUB_OUTPUT"
-          echo "team_hash_file=$team_dir/team.hash" >> "$GITHUB_OUTPUT"
-
       - name: Run public tests for score
         id: public_score
         continue-on-error: true
