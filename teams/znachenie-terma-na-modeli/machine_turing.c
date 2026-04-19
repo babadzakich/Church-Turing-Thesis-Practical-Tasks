@@ -22,7 +22,10 @@ TuringMachine* create_machine(const char *tape_initial) {
         free(tm);
         return NULL;
     }
-    strncpy(tm->tape + 1, tape_initial, tm->tape_size);
+
+    for (int i = 0; i < tape_len; ++i) {
+        tm->tape[i + 1] = tape_initial[i];
+    }
     for (int i = 0; i < tm->tape_size; ++i) {
         if (tm->tape[i] == 0) tm->tape[i] = '_';
     }
@@ -66,6 +69,8 @@ void run_machine(TuringMachine *tm) {
     for (size_t _step = 0; _step < MAX_STEPS; _step++) {
         char state = tm->current_state;
         int head = tm->head;
+
+        if (state == 'A' || state == 'R') return;
         
         if (head >= tm->tape_size) {
             char* new_tape = calloc(tm->tape_size * 2, 1);
