@@ -70,6 +70,9 @@ void apply_transition(TuringMachine *tm, Transition tr) {
 
 
 void run_machine(TuringMachine *tm) {
+    if (tm->num_transitions == 0)
+        return;
+    
     for (int i = 0; i < MAX_STEPS; i++) {
         Transition tr = current_transition(tm);
         if (tr.current_state == END_STATE) 
