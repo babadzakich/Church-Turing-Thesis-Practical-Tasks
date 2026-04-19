@@ -1,0 +1,31 @@
+Error: Deadlock reached.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ scores = <<0, 0, 0, 0, 0>>
+/\ mtxs = <<FALSE, FALSE, FALSE, FALSE, FALSE>>
+/\ PCs = <<"lock_first", "lock_first", "lock_first", "lock_first", "lock_first">>
+
+State 2: <NextW line 12, col 21 to line 14, col 40 of module main>
+/\ scores = <<0, 0, 0, 0, 0>>
+/\ mtxs = <<TRUE, FALSE, FALSE, FALSE, FALSE>>
+/\ PCs = <<"lock_second", "lock_first", "lock_first", "lock_first", "lock_first">>
+
+State 3: <NextW line 12, col 21 to line 14, col 40 of module main>
+/\ scores = <<0, 0, 0, 0, 0>>
+/\ mtxs = <<TRUE, TRUE, FALSE, FALSE, FALSE>>
+/\ PCs = <<"lock_second", "lock_second", "lock_first", "lock_first", "lock_first">>
+
+State 4: <NextW line 12, col 21 to line 14, col 40 of module main>
+/\ scores = <<0, 0, 0, 0, 0>>
+/\ mtxs = <<TRUE, TRUE, TRUE, FALSE, FALSE>>
+/\ PCs = <<"lock_second", "lock_second", "lock_second", "lock_first", "lock_first">>
+
+State 5: <NextW line 12, col 21 to line 14, col 40 of module main>
+/\ scores = <<0, 0, 0, 0, 0>>
+/\ mtxs = <<TRUE, TRUE, TRUE, TRUE, FALSE>>
+/\ PCs = <<"lock_second", "lock_second", "lock_second", "lock_second", "lock_first">>
+
+State 6: <NextW line 12, col 21 to line 14, col 40 of module main>
+/\ scores = <<0, 0, 0, 0, 0>>
+/\ mtxs = <<TRUE, TRUE, TRUE, TRUE, TRUE>>
+/\ PCs = <<"lock_second", "lock_second", "lock_second", "lock_second", "lock_second">>
