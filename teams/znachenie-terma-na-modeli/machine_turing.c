@@ -2,8 +2,8 @@
 #include <string.h>
 #include "machine_turing.h"
 
-#define MAX_STEPS 10000000      // Ограничение на число шагов
-#define INITIAL_TAPE_SIZE 256   // Начальный размер ленты
+#define MAX_STEPS 1000000000      // Ограничение на число шагов
+#define INITIAL_TAPE_SIZE 256     // Начальный размер ленты
 
 TuringMachine* create_machine(const char *tape_initial) {
     TuringMachine* tm = malloc(sizeof(TuringMachine));
@@ -73,16 +73,16 @@ void run_machine(TuringMachine *tm) {
         if (state == 'A' || state == 'R') return;
         
         if (head >= tm->tape_size) {
-            char* new_tape = calloc(tm->tape_size * 2, 1);
+            char* new_tape = calloc(tm->tape_size * 4, 1);
             if (new_tape == NULL) return;
 
             memcpy(new_tape, tm->tape, tm->tape_size);
-            for (int i = tm->tape_size; i < tm->tape_size * 2; ++i) {
+            for (int i = tm->tape_size; i < tm->tape_size * 4; ++i) {
                 new_tape[i] = '_';
             }
             free(tm->tape);
             tm->tape = new_tape;
-            tm->tape_size *= 2;
+            tm->tape_size *= 4;
         }
 
         int transition_found = 0;
