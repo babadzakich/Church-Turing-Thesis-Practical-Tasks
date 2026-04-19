@@ -51,7 +51,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-
+          
       - name: Detect submitted solution
         id: detect
         working-directory: trusted
@@ -64,7 +64,7 @@ jobs:
           team_dir="$(cat "${{ steps.paths.outputs.team_dir_file }}")"
           echo "team=$(basename "$team_dir")" >> "$GITHUB_OUTPUT"
           echo "team_hash_file=$team_dir/team.hash" >> "$GITHUB_OUTPUT"
-
+      
       - name: Run public tests for score
         id: public_score
         continue-on-error: true
