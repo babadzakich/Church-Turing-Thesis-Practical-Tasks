@@ -22,6 +22,7 @@ TuringMachine* create_machine(const char *tape_initial) {
         free(tm);
         return NULL;
     }
+    for (int i = 0; i < tm->tape_size; ++i) tm->tape[i] = '_';
     strncpy(tm->tape + 1, tape_initial, tm->tape_size);
 
     tm->transitions = calloc(8, sizeof(Transition));
@@ -103,22 +104,22 @@ char* process_string(const char *input) {
     // установка разделителя
     add_transition(tm, 1, 'a', 'a', 'R', 1);
     add_transition(tm, 1, 'b', 'b', 'R', 1);
-    add_transition(tm, 1,  0,  '#', 'L', 2);
+    add_transition(tm, 1, '_', '#', 'L', 2);
     add_transition(tm, 2, 'a', 'a', 'L', 2);
     add_transition(tm, 2, 'b', 'b', 'L', 2);
-    add_transition(tm, 2,  0,   0,  'R', 3);
+    add_transition(tm, 2, '_', '_', 'R', 3);
     // копирование a
     add_transition(tm, 3, 'a',  1,  'R', 4);
     add_transition(tm, 4, 'a', 'a', 'R', 4);
     add_transition(tm, 4, 'b', 'b', 'R', 4);
     add_transition(tm, 4, '#', '#', 'R', 4);
-    add_transition(tm, 4,  0,  'a', 'L', 6);
+    add_transition(tm, 4, '_', 'a', 'L', 6);
     // копирование b
     add_transition(tm, 3, 'b',  2,  'R', 5);
     add_transition(tm, 5, 'a', 'a', 'R', 5);
     add_transition(tm, 5, 'b', 'b', 'R', 5);
     add_transition(tm, 5, '#', '#', 'R', 5);
-    add_transition(tm, 5,  0,  'b', 'L', 6);
+    add_transition(tm, 5, '_', 'b', 'L', 6);
     // возврат
     add_transition(tm, 6, 'a', 'a', 'L', 6);
     add_transition(tm, 6, 'b', 'b', 'L', 6);
