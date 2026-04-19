@@ -1,9 +1,30 @@
-# Команда build должна собирать исполняемый файл с именем solution
-build:
-# Здесь должна быть команда для сборки решения, например:
-# g++ -o solution solution.cpp
+CXX := g++
+CXXFLAGS := -std=c++17 -O2 -Wall -Wextra -pedantic -Iinclude
+BUILD_DIR := build
+BUILD_STAMP := $(BUILD_DIR)/.dir
+OBJS := \
+	$(BUILD_DIR)/term.o \
+	$(BUILD_DIR)/parser.o \
+	$(BUILD_DIR)/church.o \
+	$(BUILD_DIR)/eval_student.o \
+	$(BUILD_DIR)/factorial_student.o \
+	$(BUILD_DIR)/ackermann_student.o
 
-# Команда test должна запускать исполняемый файл solution с входным файлом и сохранять результат в выходной файл
-# make test INPUT_FILE=path/to/input.txt OUTPUT_FILE=path/to/output.txt
-test:
-	./solution ${INPUT_FILE} > ${OUTPUT_FILE}
+.PHONY: build test clean
+
+build: $(OBJS)
+
+$(BUILD_STAMP):
+	mkdir -p $(BUILD_DIR)
+	touch $(BUILD_STAMP)
+
+$(BUILD_DIR)/%.o: src/%.cpp | $(BUILD_STAMP)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+test: build
+	test -n "$(TEST_FILE)"
+	$(CXX) $(CXXFLAGS) "$(TEST_FILE)" $(OBJS) -o $(BUILD_DIR)/test_runner
+	./$(BUILD_DIR)/test_runner
+
+clean:
+	rm -rf $(BUILD_DIR)

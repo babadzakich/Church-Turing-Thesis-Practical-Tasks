@@ -48,8 +48,10 @@ def main() -> int:
     total_tests = public["total_tests"] + hidden["total_tests"]
     success = public["success"] and hidden["success"]
 
+    task_name = task_config.get("name", "Task")
+
     lines = [
-        "## Hakaton Score",
+        f"## {task_name} Score",
         "",
         f"Score: **{normalized_score}/{final_score_max}**",
         f"Raw points: **{raw_points_awarded}/{raw_points_total}**",
