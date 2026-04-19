@@ -4,6 +4,12 @@
 #define ACCEPT 0   // Успешное завершение
 #define REJECT -1  // Ошибка выполнения
 
+#define IS_DEF_SIG
+#define START_STATE 1 // Начальное состояние МТ
+#define END_STATE 0 // Конечное состояние МТ
+#define LEFT 'L'
+#define RIGHT 'R'
+
 // Структура для описания одного правила перехода
 typedef struct {
     char current_state;    // Текущее состояние
@@ -42,8 +48,7 @@ TuringMachine* create_machine(const char *tape_initial);
  * ------------------------
  * Добавляет новое правило перехода в машину.
  */
-void add_transition(TuringMachine *tm, char current_state, char read_symbol, 
-                    char write_symbol, char direction, char next_state);
+void add_transition(TuringMachine *tm, char current_state, char read_symbol, char write_symbol, char direction, char next_state);
 
 /*
  * Функция: run_machine
