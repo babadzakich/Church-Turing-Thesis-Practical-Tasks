@@ -9,6 +9,7 @@ on:
       - "church-task-causal"
       - "church-task-claster"
       - "church-task-parser"
+      - "church-task-formula"
       
 
 permissions:
