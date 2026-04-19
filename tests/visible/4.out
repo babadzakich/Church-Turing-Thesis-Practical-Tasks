@@ -1,0 +1,15 @@
+block0:
+x = read();
+if (x < 0) goto block1; else goto block2;
+
+block1:
+y = 1;
+goto block3;
+
+block2:
+y = 2;
+goto block3;
+
+block3:
+print(y > 0);
+return;

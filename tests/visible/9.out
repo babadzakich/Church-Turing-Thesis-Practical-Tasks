@@ -1,0 +1,18 @@
+block0:
+a = 1;
+b = 2;
+c = a + b;
+if (c > 0) goto block1; else goto block2;
+
+block1:
+a = 3;
+goto block3;
+
+block2:
+b = 4;
+goto block3;
+
+block3:
+d = a + b;
+print(d > 0);
+return;

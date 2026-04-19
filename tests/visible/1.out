@@ -1,0 +1,5 @@
+block0:
+x = 5;
+y = x + 1;
+print(y > 0);
+return;

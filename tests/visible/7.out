@@ -1,0 +1,16 @@
+block0:
+x = 1;
+if (x > 0) goto block1; else goto block2;
+
+block1:
+y = 2;
+goto block3;
+
+block2:
+y = 3;
+goto block3;
+
+block3:
+z = y + 1;
+print(z > 0);
+return;

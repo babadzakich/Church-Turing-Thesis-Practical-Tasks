@@ -1,0 +1,35 @@
+block0:
+x = read();
+if (x < 0) goto block1; else goto block2;
+
+block1:
+if (x < -10) goto block4; else goto block5;
+
+block2:
+if (x > 10) goto block7; else goto block8;
+
+block3:
+print(y > 0);
+return;
+
+block4:
+y = 1;
+goto block6;
+
+block5:
+y = 2;
+goto block6;
+
+block6:
+goto block3;
+
+block7:
+y = 3;
+goto block9;
+
+block8:
+y = 4;
+goto block9;
+
+block9:
+goto block3;
