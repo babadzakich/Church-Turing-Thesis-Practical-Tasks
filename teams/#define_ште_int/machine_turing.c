@@ -15,9 +15,9 @@ TuringMachine* create_machine(const char *tape_initial) {
     }
     int len = strlen(tape_initial);
     int SIZE = INITIAL_TAPE_SIZE;
-    if (len*2+2 >= INITIAL_TAPE_SIZE)
+    if (len*2+10 >= INITIAL_TAPE_SIZE)
     {
-        SIZE = len*2+2;
+        SIZE = len*2+10;
     }
     tm->tape_size = SIZE;
     tm->tape = (char*)malloc(sizeof(char) * SIZE);
