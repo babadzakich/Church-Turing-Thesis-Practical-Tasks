@@ -40,7 +40,7 @@ TuringMachine* create_machine(const char *tape_initial) {
     tm->transitions_capacity = 8;
 
     tm->head = 1;
-    tm->current_state = 1;
+    tm->current_state = 115;
     return tm;
 }
 
@@ -85,13 +85,16 @@ void run_machine(TuringMachine *tm) {
         int transition_found = 0;
         for (int i = 0; i < tm->num_transitions; ++i) {
             Transition* tr = (tm->transitions + i);
-            if (tr->current_state != state || tr->read_symbol != tm->tape[head]) continue;
+            if (tr->current_state != state || tr->read_symbol != tm->tape[head]) {
+                continue;
+            }
 
             tm->tape[head] = tr->write_symbol;
             tm->current_state = tr->next_state;
             if (tr->direction == 'L') tm->head--;
             else if (tr->direction == 'R') tm->head++;
             transition_found = 1;
+            break;
         }
         if (transition_found == 0) return;
     }
