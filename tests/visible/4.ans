@@ -1,0 +1,19 @@
+// (x, undef), (y, undef)
+block0
+x = read()
+if (x < 0) goto block1; else goto block2;
+
+// (x, 0), (y, undef)
+block1
+y = 1
+goto block3;
+
+// (x, 0), (y, undef)
+block2
+y = 2
+goto block3;
+
+// (x, 0), (y, 1), (y, 2)
+block3
+print(y > 0)
+return;

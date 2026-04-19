@@ -1,0 +1,34 @@
+// (x, undef), (y, undef), (z, undef)
+block0
+x = 1
+y = 2
+if (x < y) goto block1; else goto block2;
+
+// (x, 0), (y, 0), (z, undef)
+block1
+if (x < 0) goto block4; else goto block5;
+
+// (x, 0), (y, 0), (z, undef)
+block2
+y = 5
+goto block3;
+
+// (x, 0), (x, 4), (y, 0), (y, 2), (y, 5), (z, undef)
+block3
+z = x + y
+print(z > 0)
+return;
+
+// (x, 0), (y, 0), (z, undef)
+block4
+x = 3
+goto block6;
+
+// (x, 0), (y, 0), (z, undef)
+block5
+y = 4
+goto block6;
+
+// (x, 0), (x, 4), (y, 0), (y, 5), (z, undef)
+block6
+goto block3;

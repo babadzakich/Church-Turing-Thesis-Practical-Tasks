@@ -1,0 +1,7 @@
+// (x, undef), (y, undef)
+block0
+x = 1
+x = 2
+y = x + 3
+print(y > 0)
+return;

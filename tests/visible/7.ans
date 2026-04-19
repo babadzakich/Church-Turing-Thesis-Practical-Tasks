@@ -1,0 +1,20 @@
+// (x, undef), (y, undef), (z, undef)
+block0
+x = 1
+if (x > 0) goto block1; else goto block2;
+
+// (x, 0), (y, undef), (z, undef)
+block1
+y = 2
+goto block3;
+
+// (x, 0), (y, undef), (z, undef)
+block2
+y = 3
+goto block3;
+
+// (x, 0), (y, 1), (y, 2), (z, undef)
+block3
+z = y + 1
+print(z > 0)
+return;

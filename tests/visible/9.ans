@@ -1,0 +1,22 @@
+// (a, undef), (b, undef), (c, undef), (d, undef)
+block0
+a = 1
+b = 2
+c = a + b
+if (c > 0) goto block1; else goto block2;
+
+// (a, 0), (b, 0), (c, 0), (d, undef)
+block1
+a = 3
+goto block3;
+
+// (a, 0), (b, 0), (c, 0), (d, undef)
+block2
+b = 4
+goto block3;
+
+// (a, 0), (a, 1), (b, 0), (b, 2), (c, 0), (d, undef)
+block3
+d = a + b
+print(d > 0)
+return;
