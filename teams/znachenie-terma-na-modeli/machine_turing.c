@@ -22,8 +22,10 @@ TuringMachine* create_machine(const char *tape_initial) {
         free(tm);
         return NULL;
     }
-    for (int i = 0; i < tm->tape_size; ++i) tm->tape[i] = '_';
     strncpy(tm->tape + 1, tape_initial, tm->tape_size);
+    for (int i = 0; i < tm->tape_size; ++i) {
+        if (tm->tape[i] == 0) tm->tape[i] = '_';
+    }
 
     tm->transitions = calloc(8, sizeof(Transition));
     if (tm->transitions == NULL) {
@@ -130,6 +132,10 @@ char* process_string(const char *input) {
     add_transition(tm, 3, '#', '#', 'L', 0);
 
     run_machine(tm);
+
+    for (int i = 0; i < tm->tape_size; ++i) {
+        if (tm->tape[i] == '_') tm->tape[i] = 0;
+    }
 
     char* answer = calloc(tm->tape_size + 1, 1);
     strncpy(answer, tm->tape + 1, tm->tape_size);
