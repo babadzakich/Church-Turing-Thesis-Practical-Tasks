@@ -54,6 +54,7 @@ jobs:
 
       - name: Detect submitted solution
         id: detect
+        continue-on-error: true
         working-directory: trusted
         run: |
           python3 ci/select_submission.py \
