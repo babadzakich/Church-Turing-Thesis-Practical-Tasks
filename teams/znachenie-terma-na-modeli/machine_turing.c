@@ -40,7 +40,7 @@ TuringMachine* create_machine(const char *tape_initial) {
     tm->transitions_capacity = 8;
 
     tm->head = 1;
-    tm->current_state = 115;
+    tm->current_state = '0';
     return tm;
 }
 
@@ -112,12 +112,12 @@ char* process_string(const char *input) {
     TuringMachine* tm = create_machine(input);
 
     // установка разделителя
-    add_transition(tm, 1, 'a', 'a', 'R', 1);
-    add_transition(tm, 1, 'b', 'b', 'R', 1);
-    add_transition(tm, 1, '_', '#', 'L', 2);
-    add_transition(tm, 2, 'a', 'a', 'L', 2);
-    add_transition(tm, 2, 'b', 'b', 'L', 2);
-    add_transition(tm, 2, '_', '_', 'R', 3);
+    add_transition(tm, '0', 'a', 'a', 'R', '0');
+    add_transition(tm, '0', 'b', 'b', 'R', '0');
+    add_transition(tm, '0', '_', '#', 'L',  2 );
+    add_transition(tm,  2,  'a', 'a', 'L',  2 );
+    add_transition(tm,  2,  'b', 'b', 'L',  2 );
+    add_transition(tm,  2,  '_', '_', 'R',  3 );
     // копирование a
     add_transition(tm, 3, 'a',  1,  'R', 4);
     add_transition(tm, 4, 'a', 'a', 'R', 4);
