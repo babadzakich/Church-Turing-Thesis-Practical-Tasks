@@ -52,11 +52,11 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Detect submitted solution.py
+      - name: Detect submitted solution
         id: detect
         working-directory: trusted
         run: |
-          python3 ci/select_submission.py \
+          python3 ci/select_submission \
             --task-dir . \
             --candidate-root ../candidate \
             --baseline-root . > "${{ steps.paths.outputs.team_dir_file }}"
@@ -70,7 +70,7 @@ jobs:
         continue-on-error: true
         working-directory: trusted
         run: |
-          python3 ci/run_task_tests.py \
+          python3 ci/run_task_tests \
             --task-dir . \
             --submission-dir "${{ steps.detect.outputs.submission_dir }}" \
             --tests-dir ../private-tests/tests/visible \
@@ -87,7 +87,7 @@ jobs:
         continue-on-error: true
         working-directory: trusted
         run: |
-          python3 ci/run_task_tests.py \
+          python3 ci/run_task_tests \
             --task-dir . \
             --submission-dir "${{ steps.detect.outputs.submission_dir }}" \
             --tests-dir ../private-tests/tests/hidden \
@@ -148,7 +148,7 @@ jobs:
         if: always()
         working-directory: trusted
         run: |
-          python3 ci/build_score_report.py \
+          python3 ci/build_score_report \
             --task-config task.json \
             --public-summary "${{ steps.paths.outputs.public_summary }}" \
             --hidden-summary "${{ steps.paths.outputs.hidden_summary }}" \
@@ -162,7 +162,7 @@ jobs:
           PIPELINE_API_BASE_URL: ${{ secrets.PIPELINE_API_BASE_URL }}
           PIPELINE_TOKEN: ${{ secrets.PIPELINE_TOKEN }}
         run: |
-          python3 ci/publish_pipeline_score.py \
+          python3 ci/publish_pipeline_score \
             --task-config task.json \
             --score-json "${{ steps.paths.outputs.score_json }}" \
             --team-name "${{ steps.detect.outputs.team }}" \
