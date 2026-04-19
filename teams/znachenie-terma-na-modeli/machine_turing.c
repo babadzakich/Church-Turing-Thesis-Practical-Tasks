@@ -137,7 +137,7 @@ char* process_string(const char *input) {
     add_transition(tm, 6,  1,  'a', 'R', 3);
     add_transition(tm, 6,  2,  'b', 'R', 3);
     // конец
-    add_transition(tm, 3, '#', '#', 'L', 0);
+    add_transition(tm, 3, '#', '#', 'L', 'A');
 
     run_machine(tm);
 
