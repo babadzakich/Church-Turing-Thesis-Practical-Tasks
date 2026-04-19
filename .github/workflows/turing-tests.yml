@@ -52,7 +52,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Detect submitted solution
+      - name: Detect submitted solution.py
         id: detect
         working-directory: trusted
         run: |

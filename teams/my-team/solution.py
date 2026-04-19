@@ -1,19 +1,11 @@
-#!/usr/bin/env python3
-
 from ortools.linear_solver import pywraplp
 import argparse, sys
 
-parser=argparse.ArgumentParser()
-
-parser.add_argument("INPUT_FILE", help="Do the bar option")
-parser.add_argument("OUTPUT_FILE", help="Foo the program")
-
-args=parser.parse_args()
 
 solver = pywraplp.Solver.CreateSolver("SCIP")
 
 
-f = open(args.INPUT_FILE)
+f = open(sys.argv[0])
 n,m = (int(i) for i in f.readline().split())
 modules = [solver.BoolVar(f"module {i}") for i in range(n)]
 for j in range(m):
@@ -32,7 +24,7 @@ solver.Minimize(sum(modules))
 
 status = solver.Solve()
 
-o = open(args.OUTPUT_FILE,'w')
+o = open(sys.argv[1],'w')
 if status == pywraplp.Solver.OPTIMAL:
     # print('Solution:')
     # print('Target Function = ', solver.Objective().Value())
