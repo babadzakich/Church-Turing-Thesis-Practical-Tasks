@@ -5,7 +5,7 @@
 #include "machine_turing.h"
 
 #define MAX_STEPS 10000000      // Ограничение на число шагов
-#define INITIAL_TAPE_SIZE 256 // Начальный размер ленты
+#define INITIAL_TAPE_SIZE 6 // Начальный размер ленты
 
 
 #define START_STATE 'q'
@@ -20,7 +20,7 @@ TuringMachine* create_machine(const char *tape_initial) {
     strcpy(tm->tape, tape_initial);    
 
     tm->head                 = 0;
-    tm->transitions          = malloc(sizeof(Transition) * INITIAL_TAPE_SIZE);
+    tm->transitions          = malloc(sizeof(Transition) * INITIAL_TRANSITION_CAPACITY);
     tm->current_state        = START_STATE;
     tm->num_transitions      = 0;
     tm->transitions_capacity = INITIAL_TRANSITION_CAPACITY;
