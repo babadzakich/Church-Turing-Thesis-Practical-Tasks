@@ -25,3 +25,4 @@ void destroy_machine(TuringMachine *tm) {
 char* process_string(const char *input) {
     
 }
+
