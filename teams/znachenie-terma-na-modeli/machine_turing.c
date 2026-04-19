@@ -73,13 +73,13 @@ void run_machine(TuringMachine *tm) {
         if (state == 'A' || state == 'R') return;
         
         if (head >= tm->tape_size) {
-            char* new_tape = calloc(tm->tape_size * 2, 1);
+            char* new_tape = calloc(tm->tape_size * 8, 1);
             if (new_tape == NULL) return;
 
             memcpy(new_tape, tm->tape, tm->tape_size);
             free(tm->tape);
             tm->tape = new_tape;
-            tm->tape_size *= 2;
+            tm->tape_size *= 8;
         }
 
         int transition_found = 0;
